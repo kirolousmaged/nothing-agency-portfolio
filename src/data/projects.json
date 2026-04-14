@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "title": "Hospitality",
+    "slug": "hospitality",
+    "category": "Interiors",
+    "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1920",
+    "description": "Premium hospitality design and space planning."
+  },
+  {
+    "id": "2",
+    "title": "Kresios",
+    "slug": "kresios",
+    "category": "Branding",
+    "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1920",
+    "description": "Minimalist branding and identity for modern retail."
+  },
+  {
+    "id": "3",
+    "title": "Tempo",
+    "slug": "tempo",
+    "category": "Photography",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1920",
+    "description": "Capturing motion and rhythm through fashion photography."
+  },
+  {
+    "id": "4",
+    "title": "L'Etoile Feb",
+    "slug": "letoile-feb",
+    "category": "Editorial",
+    "image": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=1920",
+    "description": "High-end editorial design for luxury publications."
+  },
+  {
+    "id": "5",
+    "title": "Dark Dream",
+    "slug": "dark-dream",
+    "category": "Cinematography",
+    "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1920",
+    "description": "Atmospheric cinematography and visual storytelling."
+  },
+  {
+    "id": "6",
+    "title": "The Battle",
+    "slug": "the-battle",
+    "category": "Fashion",
+    "image": "https://images.unsplash.com/photo-1539109132043-c99db4a400bd?auto=format&fit=crop&q=80&w=1920",
+    "description": "Experimental fashion direction and art production."
+  }
+]
