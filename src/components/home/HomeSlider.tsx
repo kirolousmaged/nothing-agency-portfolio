@@ -221,17 +221,19 @@ export default function HomeSlider() {
           zIndex: 40,
           display: "flex",
           flexDirection: "column",
-          gap: "4rem",
+          alignItems: "center",
+          gap: "1.2rem",
           opacity: 0.5,
           fontSize: "10px",
           fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: "0.2em",
-          writingMode: "vertical-rl",
-          transform: "rotate(180deg)",
         }}
       >
-        tw fb be gh
+        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>tw</span>
+        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>fb</span>
+        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>be</span>
+        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>gh</span>
       </div>
 
       {/* Side Vertical Branding Text (Right) */}

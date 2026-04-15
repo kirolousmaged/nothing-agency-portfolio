@@ -150,6 +150,16 @@ a {
 @media (max-width: 768px) {
   .branding-side-left,
   .branding-side-right {
-    display: none !important;
+    bottom: 1.5rem !important;
+    font-size: 9px !important;
+    opacity: 0.4 !important;
+  }
+
+  .branding-side-left {
+    left: 1rem !important;
+  }
+
+  .branding-side-right {
+    right: 1rem !important;
   }
 }
