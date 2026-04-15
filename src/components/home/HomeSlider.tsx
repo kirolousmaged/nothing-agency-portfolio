@@ -2,8 +2,9 @@
 
 import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller, Mousewheel, Parallax } from "swiper/modules";
+import { Controller, Mousewheel, Parallax, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
+import { useEffect } from "react";
 import Link from "next/link";
 import projects from "@/data/projects.json";
 
@@ -26,19 +27,61 @@ export default function HomeSlider() {
     textSwiper.slideToLoop(targetSlide);
   };
 
+  // Vertical swipe to horizontal slide translation for mobile
+  useEffect(() => {
+    if (!textSwiper) return;
+
+    let touchStartY = 0;
+    let touchStartX = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaY = touchStartY - touchEndY;
+      const deltaX = touchStartX - touchEndX;
+
+      // If vertical swipe is more prominent than horizontal, or if it's a clear vertical swipe
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 40) {
+        if (deltaY > 0) {
+          textSwiper.slideNext();
+        } else {
+          textSwiper.slidePrev();
+        }
+      }
+    };
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [textSwiper]);
+
   return (
     <div className="full-screen" style={{ backgroundColor: "var(--color-bg-dark)" }}>
       {/* Background Swiper - Pure Parallax Image Layer */}
       <Swiper
-        modules={[Controller, Mousewheel, Parallax]}
+        modules={[Controller, Mousewheel, Parallax, Keyboard]}
         onSwiper={setBgSwiper}
-        controller={{ control: textSwiper, by: 'container' }}
-        mousewheel={true}
+        controller={{ control: textSwiper }}
+        mousewheel={{
+          sensitivity: 1,
+          thresholdDelta: 50,
+          forceToFreeMode: false,
+        }}
+        keyboard={{ enabled: true }}
         parallax={true}
-        speed={800} // Snappier feel
+        speed={1000} // Slightly slower for more premium feel
         loop={true}
-        threshold={10} // Ignore accidental micro-swipes
-        className="absolute-inset"
+        allowTouchMove={true}
+        className="absolute-inset bg-swiper"
       >
         {projects.map((project) => (
           <SwiperSlide key={project.id} className="full-screen">
@@ -67,15 +110,20 @@ export default function HomeSlider() {
         <Swiper
           modules={[Controller]}
           onSwiper={setTextSwiper}
-          controller={{ control: bgSwiper, by: 'container' }}
+          controller={{ control: bgSwiper }}
           onActiveIndexChange={(swiper) => setActiveIndex(swiper.realIndex + 1)}
-          speed={800} // Matches BG speed for sync
+          speed={1000}
           direction="horizontal"
           centeredSlides={true}
           slidesPerView="auto"
-          spaceBetween={180} // Increased space for the scale effect
+          spaceBetween={180}
           loop={true}
-          className="absolute-inset drag-target"
+          className="absolute-inset drag-target text-swiper"
+          breakpoints={{
+            320: { spaceBetween: 60 },
+            768: { spaceBetween: 120 },
+            1024: { spaceBetween: 180 }
+          }}
         >
           {projects.map((project) => (
             <SwiperSlide 

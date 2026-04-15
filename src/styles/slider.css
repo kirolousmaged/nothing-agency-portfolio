@@ -4,12 +4,22 @@
 
 .bg-swiper .swiper-slide {
   height: 100vh;
+  height: 100dvh;
 }
 
 .text-swiper .swiper-slide {
   height: 100vh;
+  height: 100dvh;
+  display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (max-width: 768px) {
+  .text-swiper .swiper-slide {
+    padding: 0 1rem !important;
+  }
 }
 
 .project-title-link {
