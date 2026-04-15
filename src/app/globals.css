@@ -25,7 +25,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none !important; /* Managed by GlobalCursor */
+}
+
+/* Hide default cursor only on non-touch (desktop) devices */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 html, body {
@@ -138,4 +144,12 @@ a {
 /* INTERACTION */
 .hover-target {
   /* Marker for cursor */
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .branding-side-left,
+  .branding-side-right {
+    display: none !important;
+  }
 }

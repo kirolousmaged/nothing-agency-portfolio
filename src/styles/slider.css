@@ -7,13 +7,22 @@
   height: 100dvh;
 }
 
+.text-swiper {
+  /* Prevent Swiper from adding unwanted transforms on the wrapper */
+  will-change: transform;
+}
+
 .text-swiper .swiper-slide {
   height: 100vh;
   height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.text-swiper .swiper-wrapper {
+  /* Smoother hardware-accelerated transitions */
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 @media (max-width: 768px) {
