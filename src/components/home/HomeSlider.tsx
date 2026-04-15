@@ -74,7 +74,6 @@ export default function HomeSlider() {
         mousewheel={{
           sensitivity: 1,
           thresholdDelta: 50,
-          forceToFreeMode: false,
         }}
         keyboard={{ enabled: true }}
         parallax={true}
