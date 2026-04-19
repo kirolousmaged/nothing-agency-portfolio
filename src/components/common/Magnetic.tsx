@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactNode;
   strength?: number;
 }
 
@@ -47,5 +47,9 @@ export default function Magnetic({ children, strength = 0.5 }: Props) {
     };
   }, [strength]);
 
-  return React.cloneElement(children, { ref });
+  return (
+    <div ref={ref} style={{ display: 'inline-block' }}>
+      {children}
+    </div>
+  );
 }
