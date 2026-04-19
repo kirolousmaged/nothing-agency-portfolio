@@ -10,9 +10,17 @@ import projects from "@/data/projects.json";
 // Import Swiper styles
 import "swiper/css";
 
-export default function HomeSlider() {
+import { translations, Locale } from "@/data/translations";
+
+interface HomeSliderProps {
+  locale: string;
+}
+
+export default function HomeSlider({ locale }: HomeSliderProps) {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const currentLocale = (locale as Locale) || "en";
+  const t = translations[currentLocale].homepage;
   const progressRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -147,7 +155,7 @@ export default function HomeSlider() {
                     willChange: "transform, opacity",
                   }}
                 >
-                  <Link href={`/project/${project.slug}`} className="hover-target">
+                  <Link href={`/${currentLocale}/project/${project.slug}`} className="hover-target">
                     <div style={{ position: "relative", display: "inline-block" }}>
                       {/* Highlight Block */}
                       {isActive && (
@@ -159,7 +167,7 @@ export default function HomeSlider() {
                             transform: "translateX(-50%)",
                             width: "110%",
                             height: "35%",
-                            backgroundColor: "rgba(255, 255, 255, 0.3)",
+                            backgroundColor: "rgba(240, 179, 28, 0.25)",
                             zIndex: 0,
                             transition: "all 0.6s ease",
                           }}
@@ -211,58 +219,13 @@ export default function HomeSlider() {
         {projects[activeIndex]?.title}
       </div>
 
-      {/* Side Vertical Branding Text (Left) */}
-      <div
-        className="branding-side-left"
-        style={{
-          position: "absolute",
-          left: "4rem",
-          bottom: "4rem",
-          zIndex: 40,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "1.2rem",
-          opacity: 0.5,
-          fontSize: "10px",
-          fontWeight: 700,
-          textTransform: "uppercase",
-          letterSpacing: "0.2em",
-        }}
-      >
-        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>tw</span>
-        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>fb</span>
-        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>be</span>
-        <span className="hover-target" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>gh</span>
-      </div>
-
-      {/* Side Vertical Branding Text (Right) */}
-      <div
-        className="branding-side-right"
-        style={{
-          position: "absolute",
-          right: "4rem",
-          bottom: "4rem",
-          zIndex: 40,
-          display: "flex",
-          flexDirection: "column",
-          gap: "2rem",
-          opacity: 0.5,
-          fontSize: "10px",
-          fontWeight: 700,
-          textTransform: "uppercase",
-          letterSpacing: "0.2em",
-          writingMode: "vertical-rl",
-        }}
-      >
-        NOTHING 2026
-      </div>
+      {/* Slider HUD handled below */}
 
       {/* Unified Slider HUD */}
       <div
         style={{
           position: "absolute",
-          bottom: "4.5rem",
+          bottom: "6rem",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 50,
@@ -306,11 +269,11 @@ export default function HomeSlider() {
               left: `${(activeIndex / (projects.length - 1)) * 100}%`,
               width: "12px",
               height: "12px",
-              backgroundColor: "white",
+              backgroundColor: "var(--color-accent)",
               borderRadius: "50%",
               transform: "translate(-50%, -50%)",
               transition: "left 0.8s cubic-bezier(0.25, 1, 0.5, 1)",
-              boxShadow: "0 0 15px rgba(255,255,255,0.4)",
+              boxShadow: "0 0 15px rgba(240, 179, 28, 0.4)",
             }}
           />
         </div>
